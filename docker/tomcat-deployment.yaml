@@ -12,6 +12,6 @@ spec:
     spec:
       containers:
       - name: myweb-container
-        image: 172.16.0.193:5000/cloud/cicd:v${BUILD_NUMBER}
+        image: 172.16.0.193:5000/cloud/cicd:v$$BUILD_NUMBER$$
         ports:
         - containerPort: 8080
