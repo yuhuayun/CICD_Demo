@@ -11,6 +11,6 @@ public class TestController {
 
     @RequestMapping("/index")
     public String show(){
-        return "Hello World!!!!!cloudtest，this is a test demo";
+        return "Hello World!cloudtest，this is a test demo";
     }
 }
