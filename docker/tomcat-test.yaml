@@ -1,0 +1,36 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: myweb
+  namespace: ilanni-namespace
+spec:
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 2
+      maxUnavailable: 1
+  template:
+    metadata:
+      labels:
+        app: myweb
+    spec:
+      containers:
+      - name: myweb-container
+        image: 172.16.0.193:5000/cloud/cicd:v$$BUILD_NUMBER$$
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: myweb
+  namespace: ilanni-namespace
+spec:
+#  type: NodePort
+  ports:
+  - port: 8080
+    targetPort: 8080
+#    nodePort: 31111
+  selector:
+    app: myweb

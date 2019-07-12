@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: List
+items:
+- apiVersion: extensions/v1beta1
+  kind: Ingress
+  metadata:
+    name: ilanni-ingress-test
+    namespace: ilanni-namespace
+    annotations:
+      nginx.ingress.kubernetes.io/rewrite-target: /index
+  spec:
+    rules:
+    - host: ingress.ilanni.com
+      http:
+        paths:
+        - path: /index      
+          backend:
+            serviceName: myweb
+            servicePort: 8080
